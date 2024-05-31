@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+    <title>WildFly Elytron Credential Viewer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ775/Qt4lzGZpyf2EyJntNJxnWQ8U5T1nE" crossorigin="anonymous"/>
+    <h:outputStylesheet name="css/stylesheet.css"/>
+</h:head>
+
+<h:body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <table>
+                            <tr>
+                                <td><img src="#{facesContext.externalContext.requestContextPath}/resources/images/key-value-database.png" alt="Credential Image"
+                                         class="credential-image"/></td>
+                                <td><h2> WildFly Elytron Credential Viewer </h2></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="card-body">
+                        <h:form>
+                            <table class="form-table" border="2px">
+                                <tr>
+                                    <td class="text-left col-35">
+                                        <h:outputLabel value="Enter Credential Alias:" for="credentialAlias" class="form-label col-80"/>
+                                    </td>
+                                    <td class="text-left col-20">
+                                        <h:inputText id="credentialAlias" value="#{credentialStoreBean.credentialAlias}" class="form-control"/>
+                                    </td>
+                                    <td class="text-center col-15">
+                                        <h:commandButton value="Mostrar Credencial" action="#{credentialStoreBean.loadCredential}"
+                                                         class="btn btn-primary btn-smaller">
+                                            <f:ajax execute="credentialAlias" render="credentialValue"/>
+                                        </h:commandButton>
+                                    </td>
+                                </tr>
+                            </table>
+                        </h:form>
+                        <p></p>
+                    </div>
+                    <p></p>
+                    <h:outputLabel id="credentialValue" value="#{credentialStoreBean.credentialValue}" class="result-text text-center mt-3"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvvVHk/UffN9j1p5i5"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGaAWk8YH4pM6arN6b6Z5v0cCf" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIyqKPaIIpFGzJmP69YLgxUsmFURyOEnlWbY0Mo" crossorigin="anonymous"></script>
+</h:body>
+
+</html>
